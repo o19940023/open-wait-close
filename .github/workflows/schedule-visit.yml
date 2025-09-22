@@ -1,0 +1,28 @@
+name: Scheduled visit
+
+on:
+  workflow_dispatch: {}    # Manuel çalıştırma butonu
+  schedule:
+    - cron: '*/15 * * * *' # Her 15 dakikada bir çalışır, istersen */5 yapabilirsin
+
+jobs:
+  visit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright browsers and deps
+        run: npx playwright install --with-deps
+
+      - name: Run visit script
+        env:
+          TARGET_URL: 'https://magarajam.com/game/Duality' # BURAYI kendi sitenle değiştir
+        run: node open_wait_close.js
