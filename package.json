@@ -1,0 +1,11 @@
+{
+  "name": "open-wait-close",
+  "version": "1.0.0",
+  "private": false,
+  "scripts": {
+    "test": "node open_wait_close.js"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}
